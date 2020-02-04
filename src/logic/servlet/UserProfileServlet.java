@@ -1,8 +1,11 @@
 package logic.servlet;
 
 import java.io.IOException;
+
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,7 +61,7 @@ public class UserProfileServlet extends HttpServlet {
 					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
 					out.println("<script>");
 					out.println("$(document).ready(function(){");
-					out.println("swal ( 'Collection Point successfull deleted !' ,  '' ,  'success' );");
+					out.println("swal ( 'Code correctly collected!' ,  '' ,  'success' );");
 					out.println("});");
 					out.println("</script>");
 					
@@ -67,7 +70,7 @@ public class UserProfileServlet extends HttpServlet {
 						out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
 						out.println("<script>");
 						out.println("$(document).ready(function(){");
-						out.println("swal ( 'Errore, non è un numero' ,  'Try Again' ,  'error' );");
+						out.println("swal ( 'Error, please insert a valid ActivationCode' ,  'Try Again' ,  'error' );");
 						out.println("});");
 						out.println("</script>");
 				}
@@ -76,7 +79,8 @@ public class UserProfileServlet extends HttpServlet {
 			}
 
 			
-			request.getRequestDispatcher("userprofile.jsp").forward(request, response);
+			request.getRequestDispatcher("userprofile.jsp").include(request, response);
+		
 		}
 	}
 
