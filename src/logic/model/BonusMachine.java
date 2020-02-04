@@ -2,13 +2,7 @@ package logic.model;
 
 import java.sql.SQLException;
 import java.util.List;
-import logic.model.Observer;
 import logic.enums.MesType;
-import logic.model.AbstractUser;
-import logic.model.ActivationCodeTran;
-import logic.model.BonusTran;
-import logic.model.History;
-import logic.model.Message;
 import logic.persistence.MessageDAO;
 import logic.persistence.TransactionDAO;
 import logic.persistence.UserDAO;

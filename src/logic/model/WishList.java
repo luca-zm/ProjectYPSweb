@@ -31,7 +31,6 @@ public class WishList {
 	
 	public void deleteProduct(Product product) {
 		List<Product> appoggio = new ArrayList<>();
-		int c = 0;
 		for (Product p: this.list) {
 			if(p.getId() != product.getId()){
 				

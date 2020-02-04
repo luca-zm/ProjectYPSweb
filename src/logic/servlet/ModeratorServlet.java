@@ -47,7 +47,11 @@ public class ModeratorServlet extends HttpServlet {
 		ControllerManageCollPoint conmod = new ControllerManageCollPoint(); 
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession(); 
-		
+		String script1 ="<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>";
+		String script2 ="<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>";
+		String script3 ="<script>";
+		String script4 ="$(document).ready(function(){";
+		String script5 ="</script>";
 		
 		if("add".equals(action)) {
 			
@@ -63,13 +67,13 @@ public class ModeratorServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-			out.println("<script>");
-			out.println("$(document).ready(function(){");
+			out.println(script1);
+			out.println(script2);
+			out.println(script3);
+			out.println(script4);
 			out.println("swal ( 'Collection Point successfull inserted !' ,  '' ,  'success' );");
 			out.println("});");
-			out.println("</script>");
+			out.println(script5);
 			RequestDispatcher rd = request.getRequestDispatcher("moderator.jsp");
 			rd.include(request, response);
 				
@@ -82,22 +86,22 @@ public class ModeratorServlet extends HttpServlet {
 			CollectionPoint cp = new CollectionPoint(collId, null , 0, 0, null, 0, 0);
 			try {
 				if(conmod.delete(cp)) {
-					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-					out.println("<script>");
-					out.println("$(document).ready(function(){");
+					out.println(script1);
+					out.println(script2);
+					out.println(script3);
+					out.println(script4);
 					out.println("swal ( 'Collection Point successfull deleted !' ,  '' ,  'success' );");
 					out.println("});");
-					out.println("</script>");
+					out.println(script5);
 				}
 				else {
-					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-					out.println("<script>");
-					out.println("$(document).ready(function(){");
+					out.println(script1);
+					out.println(script2);
+					out.println(script3);
+					out.println(script4);
 					out.println("swal ( 'Collection Point not found!' ,  'Try Again' ,  'error' );");
 					out.println("});");
-					out.println("</script>");
+					out.println(script5);
 				}
 				List<CollectionPoint> collPoint = (List<CollectionPoint>) CollectionPointDAO.select();
 				session.setAttribute("collpoint", collPoint);

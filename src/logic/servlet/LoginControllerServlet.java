@@ -51,6 +51,21 @@ public class LoginControllerServlet extends HttpServlet {
 		String script = "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>";
 		String scriptcloud = "<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>";
 		String index = "index.jsp";
+		List<Product> catalogo = new ArrayList<>();
+		List<Product> catalogomini = new ArrayList<>();
+		
+		try {
+			catalogo = ProductDAO.select();			
+			for(Product p: catalogo) {
+				if(p.getPrice() > 100) {
+					catalogomini.add(p);
+			
+				}
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+
 		
 		ControllerManageCollPoint c = new ControllerManageCollPoint();
 		URL mapUrl = null;
@@ -71,65 +86,54 @@ public class LoginControllerServlet extends HttpServlet {
 			UserBean ub = new UserBean(0, mail, null, null, pw, null);
 			
 			try {
-				if(cl.login(ub, session))
-				{
+				cl.login(ub, session);
+				AbstractUser user = (AbstractUser) session.getAttribute("user");
+				if(user != null && user.getType().equals(Roles.USER)) {
+					List<CollectionPoint> collpoint = CollectionPointDAO.select();
+
+					session.setAttribute("mapImage", mapUrl);
+					session.setAttribute("collpoint", collpoint);
+					session.setAttribute("catalogomini", catalogomini);
+					session.setAttribute("catalogo", catalogo);
+						
+					session.setAttribute("indirizzo", AddressDAO.findAddressById(user.getId()));
+						
+					request.getRequestDispatcher("homepage.jsp").forward(request, response);
+					return;
+						
+				}
+					
+				if(user != null && user.getType().equals(Roles.COLLECTIONPOINTMAN)) {
+					List<CollectionPoint> collpoint = CollectionPointDAO.select();
+					session.setAttribute("collpoint", collpoint);
+					request.getRequestDispatcher("moderator.jsp").forward(request, response);
+					return;
+				}
+					
+					
+				if(user != null && user.getType().equals(Roles.ADMIN)) {
+					List<AbstractUser> users = UserDAO.findUsers();
+					session.setAttribute("catalogo", catalogo);
+					session.setAttribute("users", users);
+					request.getRequestDispatcher("admin.jsp").forward(request, response);
+					return;
+				}
+					
+
 				
-					AbstractUser user = (AbstractUser) session.getAttribute("user");
-					if(user.getType().equals(Roles.USER)) {
-						List<Product> catalogo = ProductDAO.select();
-						List<Product> catalogomini = new ArrayList<>();
-						List<CollectionPoint> collpoint = CollectionPointDAO.select();
-						for(Product p: catalogo) {
-							if(p.getPrice() > 100) {
-								catalogomini.add(p);
-						
-							}
-						}
-						session.setAttribute("mapImage", mapUrl);
-						session.setAttribute("collpoint", collpoint);
-						session.setAttribute("catalogomini", catalogomini);
-						session.setAttribute("catalogo", catalogo);
-						
-						session.setAttribute("indirizzo", AddressDAO.findAddressById(user.getId()));
-						
-						request.getRequestDispatcher("homepage.jsp").forward(request, response);
-						return;
-						
-					}
-					
-					if(user.getType().equals(Roles.COLLECTIONPOINTMAN)) {
-						List<CollectionPoint> collpoint = CollectionPointDAO.select();
-						session.setAttribute("collpoint", collpoint);
-						request.getRequestDispatcher("moderator.jsp").forward(request, response);
-						return;
-					}
-					
-					
-					if(user.getType().equals(Roles.ADMIN)) {
-						List<Product> catalogo = ProductDAO.select();
-						List<AbstractUser> users = UserDAO.findUsers();
-						session.setAttribute("catalogo", catalogo);
-						session.setAttribute("users", users);
-						request.getRequestDispatcher("admin.jsp").forward(request, response);
-						return;
-					}
-					
-
-				}
-				else {
-					out.println(scriptcloud);
-					out.println(script);
-					out.println(scr);
-					out.println(scr3);
-					out.println("swal ( 'Wrong email or password' ,  'Try again !' ,  'error' );");
-					out.println("});");
-					out.println(scr2);
-					RequestDispatcher rd = request.getRequestDispatcher(index);
-					rd.include(request, response);
+			
+				out.println(scriptcloud);
+				out.println(script);
+				out.println(scr);
+				out.println(scr3);
+				out.println("swal ( 'Wrong email or password' ,  'Try again !' ,  'error' );");
+				out.println("});");
+				out.println(scr2);
+				RequestDispatcher rd = request.getRequestDispatcher(index);
+				rd.include(request, response);
 				}
 
-			} catch (SQLException | ServletException | IOException e) {
-		
+			    catch (SQLException | ServletException | IOException e) {
 				e.printStackTrace();
 			}
 		}

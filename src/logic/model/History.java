@@ -2,7 +2,6 @@ package logic.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 public class History {

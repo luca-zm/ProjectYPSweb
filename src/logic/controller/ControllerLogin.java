@@ -27,8 +27,8 @@ import logic.persistence.WishListDAO;
 
 public class ControllerLogin {
 	
-	public Boolean login(UserBean userBean, HttpSession session) throws SQLException {
-		
+	public Boolean login(UserBean userBean, HttpSession session) {
+	  try {
 		String mail = userBean.getMail();
 		String pass = userBean.getPass();
 		AbstractUser user = UserDAO.findRegisteredUser(mail);
@@ -58,7 +58,11 @@ public class ControllerLogin {
 		BonusMachine machine = new BonusMachine(user);
 		machine.getClass();
 		session.setAttribute("user", user);
-		return true;
+	  }
+	  catch(SQLException e) {
+		  e.printStackTrace();
+	  }
+	  return true;
 	}
 	
 	public AbstractUser giveUserForRole(UserBean u) throws SQLException {		
