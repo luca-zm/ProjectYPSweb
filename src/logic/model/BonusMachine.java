@@ -1,17 +1,17 @@
-package webeco.src.model;
+package logic.model;
 
 import java.sql.SQLException;
 import java.util.List;
-import laptopeco.logic.model.Observer;
-import laptopeco.logic.enums.MesType;
-import laptopeco.logic.model.AbstractUser;
-import laptopeco.logic.model.ActivationCodeTran;
-import laptopeco.logic.model.BonusTran;
-import laptopeco.logic.model.History;
-import laptopeco.logic.model.Message;
-import laptopeco.logic.persistence.MessageDAO;
-import laptopeco.logic.persistence.TransactionDAO;
-import laptopeco.logic.persistence.UserDAO;
+import logic.model.Observer;
+import logic.enums.MesType;
+import logic.model.AbstractUser;
+import logic.model.ActivationCodeTran;
+import logic.model.BonusTran;
+import logic.model.History;
+import logic.model.Message;
+import logic.persistence.MessageDAO;
+import logic.persistence.TransactionDAO;
+import logic.persistence.UserDAO;
 
 public class BonusMachine implements Observer{
 	

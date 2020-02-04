@@ -1,10 +1,10 @@
-package webeco.src.controller;
+package logic.controller;
 
 import java.sql.SQLException;
 
-import laptopeco.bean.UserBean;
-import laptopeco.logic.model.AbstractUser;
-import laptopeco.logic.persistence.UserDAO;
+import logic.bean.UserBean;
+import logic.model.AbstractUser;
+import logic.persistence.UserDAO;
 
 public class ControllerManageUser {
 	public Boolean update(UserBean userBean) throws SQLException {

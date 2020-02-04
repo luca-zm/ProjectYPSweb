@@ -1,5 +1,5 @@
-package laptopeco.logic.model;
-import laptopeco.logic.enums.MesType;
+package logic.model;
+import logic.enums.MesType;
 
 public class Message {
 	

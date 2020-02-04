@@ -1,4 +1,4 @@
-package webeco.src.controller;
+package logic.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -6,13 +6,13 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import laptopeco.bean.CollectionPointBean;
-import laptopeco.logic.URLReader;
-import laptopeco.logic.enums.MesType;
-import laptopeco.logic.model.CollectionPoint;
-import laptopeco.logic.model.Message;
-import laptopeco.logic.persistence.CollectionPointDAO;
-import laptopeco.logic.persistence.MessageDAO;
+import logic.bean.CollectionPointBean;
+import logic.model.URLReader;
+import logic.enums.MesType;
+import logic.model.CollectionPoint;
+import logic.model.Message;
+import logic.persistence.CollectionPointDAO;
+import logic.persistence.MessageDAO;
 
 public class ControllerManageCollPoint {	
 	private String markerLayout1 = "&markers=color:green%7Clabel:";

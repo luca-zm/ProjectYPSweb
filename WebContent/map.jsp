@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.CollectionPoint" %>
-<%@ page import="controller.ControllerManageCollPoint" %>
+<%@ page import="logic.model.CollectionPoint" %>
+<%@ page import="logic.controller.ControllerManageCollPoint" %>
 <%@ page import="java.net.MalformedURLException"%>
 <%@ page import="java.net.URL" %>
 <%@ page import="java.sql.SQLException" %>

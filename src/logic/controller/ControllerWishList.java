@@ -1,12 +1,12 @@
-package webeco.src.controller;
+package logic.controller;
 
 import java.security.SecureRandom;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
-import laptopeco.logic.model.AbstractUser;
-import laptopeco.logic.model.Product;
-import laptopeco.logic.persistence.ProductDAO;
-import laptopeco.logic.persistence.WishListDAO;
+import logic.model.AbstractUser;
+import logic.model.Product;
+import logic.persistence.ProductDAO;
+import logic.persistence.WishListDAO;
 
 public class ControllerWishList {
 	

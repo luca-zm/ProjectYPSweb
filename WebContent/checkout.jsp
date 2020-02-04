@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Product" %>
+<%@ page import="logic.model.Product" %>
 <html lang="zxx">
 <head>
 	<title>EcoClean</title>

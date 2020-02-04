@@ -1,6 +1,6 @@
-package laptopeco.logic.model;
+package logic.model;
 
-import laptopeco.logic.enums.Roles;
+import logic.enums.Roles;
 
 public abstract class AbstractUser {
 	protected  int id;

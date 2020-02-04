@@ -1,13 +1,13 @@
-package webeco.src.controller;
+package logic.controller;
 
 import java.sql.SQLException;
-import laptopeco.bean.AddressBean;
-import laptopeco.bean.UserBean;
-import laptopeco.logic.model.AbstractUser;
-import laptopeco.logic.model.Address;
-import laptopeco.logic.model.FactoryUsers;
-import laptopeco.logic.persistence.AddressDAO;
-import laptopeco.logic.persistence.UserDAO;
+import logic.bean.AddressBean;
+import logic.bean.UserBean;
+import logic.model.AbstractUser;
+import logic.model.Address;
+import logic.model.FactoryUsers;
+import logic.persistence.AddressDAO;
+import logic.persistence.UserDAO;
 
 public class ControllerRegistration {
 	public Boolean register(UserBean userBean) throws SQLException {

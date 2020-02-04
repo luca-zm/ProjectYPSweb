@@ -3,9 +3,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList" %>
-<%@page import="model.Message" %>
-<%@page import="model.AbstractUser" %>
-<%@page import="persistence.MessageDAO" %>
+<%@page import="logic.model.Message" %>
+<%@page import="logic.model.AbstractUser" %>
+<%@page import="logic.persistence.MessageDAO" %>
 
 <!DOCTYPE html>
 <html lang="zxx">

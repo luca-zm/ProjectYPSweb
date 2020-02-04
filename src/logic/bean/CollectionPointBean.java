@@ -1,4 +1,4 @@
-package laptopeco.bean;
+package logic.bean;
 public class CollectionPointBean {
 	private int idCollPointBean;
 	private String nameCollPointBean;

@@ -1,4 +1,4 @@
-package laptopeco.logic.enums;
+package logic.enums;
 
 public enum Roles {
 	GUEST,

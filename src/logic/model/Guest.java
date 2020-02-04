@@ -1,9 +1,9 @@
-package laptopeco.logic.model;
+package logic.model;
 
-import static laptopeco.logic.enums.Roles.GUEST;
+import static logic.enums.Roles.GUEST;
 
 
-import laptopeco.logic.enums.Roles;
+import logic.enums.Roles;
 
 public class Guest extends AbstractUser{
 	public Guest(int id, String mail, String name, String surname, String pass) {
