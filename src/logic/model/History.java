@@ -24,17 +24,10 @@ public class History {
 	}
 
 	 public void inform() throws SQLException{
-	   java.util.Enumeration enumeration = listObservers();
-	   while (enumeration.hasMoreElements()) {
-	     ((Observer)enumeration.nextElement()).update();
-	    }
-	 }
-	 
-	  public Enumeration listObservers(){
-		 	return ((java.util.Vector) listObserver.clone()).elements();
+	   for(Observer ob: listObserver) {
+		   ob.update();
 	   }
-	
-
+	 }
 
 	public List<Transaction> getTranList() {
 		return tranList;

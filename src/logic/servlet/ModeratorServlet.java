@@ -1,15 +1,22 @@
 package logic.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import logic.bean.CollectionPointBean;
 import logic.controller.ControllerManageCollPoint;
 import logic.model.CollectionPoint;
+import logic.persistence.CollectionPointDAO;
 
 /**
  * Servlet implementation class ModeratorServlet
@@ -38,6 +45,8 @@ public class ModeratorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		ControllerManageCollPoint conmod = new ControllerManageCollPoint(); 
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession(); 
 		
 		
 		if("add".equals(action)) {
@@ -49,10 +58,20 @@ public class ModeratorServlet extends HttpServlet {
 			CollectionPointBean cb = new CollectionPointBean(0, name, address, optime, closetime);
 			try {
 				conmod.insert(cb);
+				List<CollectionPoint> collPoint = (List<CollectionPoint>) CollectionPointDAO.select();
+				session.setAttribute("collpoint", collPoint);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("moderator.jsp");
+			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+			out.println("<script>");
+			out.println("$(document).ready(function(){");
+			out.println("swal ( 'Collection Point successfull inserted !' ,  '' ,  'success' );");
+			out.println("});");
+			out.println("</script>");
+			RequestDispatcher rd = request.getRequestDispatcher("moderator.jsp");
+			rd.include(request, response);
 				
 		}
 		
@@ -62,11 +81,34 @@ public class ModeratorServlet extends HttpServlet {
 			
 			CollectionPoint cp = new CollectionPoint(collId, null , 0, 0, null, 0, 0);
 			try {
-				conmod.delete(cp);
+				if(conmod.delete(cp)) {
+					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+					out.println("<script>");
+					out.println("$(document).ready(function(){");
+					out.println("swal ( 'Collection Point successfull deleted !' ,  '' ,  'success' );");
+					out.println("});");
+					out.println("</script>");
+				}
+				else {
+					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+					out.println("<script>");
+					out.println("$(document).ready(function(){");
+					out.println("swal ( 'Collection Point not found!' ,  'Try Again' ,  'error' );");
+					out.println("});");
+					out.println("</script>");
+				}
+				List<CollectionPoint> collPoint = (List<CollectionPoint>) CollectionPointDAO.select();
+				session.setAttribute("collpoint", collPoint);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("moderator.jsp");
+
+			
+			RequestDispatcher rd = request.getRequestDispatcher("moderator.jsp");
+			rd.include(request, response);
 		}
 			
 	}

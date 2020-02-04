@@ -54,7 +54,11 @@ public class LoginControllerServlet extends HttpServlet {
 		
 		ControllerManageCollPoint c = new ControllerManageCollPoint();
 		URL mapUrl = null;
-		mapUrl = c.startUrl();
+		try {
+			mapUrl = c.startUrl();
+		} catch (MalformedURLException | SQLException e1) {
+			e1.printStackTrace();
+		}
 					
 		
 		

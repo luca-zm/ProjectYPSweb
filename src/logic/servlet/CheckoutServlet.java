@@ -46,7 +46,7 @@ public class CheckoutServlet extends HttpServlet {
 			
 			try {
 			    AbstractUser user = (AbstractUser) session.getAttribute("user");
-			    if(user.getCart().getTotalPrice() >= user.getGreenCoin())
+			    if(user.getCart().getTotalPrice() > user.getGreenCoin())
 			    {
 					PrintWriter out = response.getWriter();
 					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");

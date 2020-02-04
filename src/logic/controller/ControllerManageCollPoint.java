@@ -126,7 +126,9 @@ public class ControllerManageCollPoint {
 	}
 	
 	public Boolean delete(CollectionPoint collPoint) throws SQLException {
-		CollectionPointDAO.delete(collPoint.getId());
+		if(!CollectionPointDAO.delete(collPoint.getId())) {
+			return false;
+		}
 		
 	    Message m = new Message(0,getDate(), "Eliminato Punto di raccolta", "E' stato eliminato un punto di raccolta sulla mappa: " + collPoint.getName(), MesType.COLLPOINTBROAD);
 		

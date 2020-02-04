@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.ArrayList" %>
+<%@page import="java.util.List" %>
 <%@page import="logic.model.Message" %>
 <%@page import="logic.model.AbstractUser" %>
 <%@page import="logic.persistence.MessageDAO" %>
@@ -117,7 +117,7 @@
 							
 								<table><thead><tr><th></th><th></th></tr></thead>
 								<tbody>
-								<% ArrayList<Message> messages = MessageDAO.selectBroadcast();
+								<% List<Message> messages = MessageDAO.selectBroadcast();
 								   AbstractUser user = (AbstractUser)session.getAttribute("user");
 								   messages.addAll(user.getBoards().getList());	
 								%>

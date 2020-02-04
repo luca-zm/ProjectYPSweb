@@ -1,4 +1,4 @@
-package laptopeco.logic;
+package logic.model;
 
 import java.io.*;
 

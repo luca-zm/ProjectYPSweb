@@ -45,7 +45,7 @@ public class HomePageServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(); 
 		String action = request.getParameter("action");
-		String h = "homepage";
+		String h = "homepage.jsp";
 		int productId = Integer.parseInt(request.getParameter("productId"));
 		if("wish".equals(action)) {
 			ControllerWishList controller = new ControllerWishList();

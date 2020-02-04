@@ -42,6 +42,9 @@ public class ShopCartServlet extends HttpServlet {
 			if("del".equals(action)) {
 				int productId = Integer.parseInt(request.getParameter("productId"));
 					controller.deleteProduct(productId, session);
+					RequestDispatcher rd = request.getRequestDispatcher(c);
+					rd.include(request, response);
+					return;
 			}
 			
 			

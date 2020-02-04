@@ -39,7 +39,7 @@
 	<nav class="main-navbar">
 			<div class="container">
 				<!-- menu -->
-				<form method="post" action="ModeratorServlet">
+				<form method="post" action="LoginModeratorServlet">
 					
 				<ul class="main-menu">
 					<li><input type="submit" class="site-btn" style="background-color:#a7aba9" name="action" value="logout"></li>
