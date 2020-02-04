@@ -117,7 +117,7 @@ public class ControllerManageCollPoint {
 		CollectionPoint collPoint = new CollectionPoint(id, name, lon, lat, addr, opening, closing);
 		CollectionPointDAO.insert(collPoint);
 	    
-	    Message m = new Message(0,getDate(), "Nuovo Punto di raccolta", "C'e' un nuovo punto di raccolta sulla mappa: " + name, MesType.COLLPOINTBROAD);
+	    Message m = new Message(0,getDate(), "Nuovo Punto di raccolta", "Aggiunto un nuovo punto di raccolta sulla mappa: " + name, MesType.COLLPOINTBROAD);
 		
 	    MessageDAO.insertBroad(m);
 	    
