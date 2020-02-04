@@ -73,17 +73,9 @@ public class LogRegUtil {
 				request.getRequestDispatcher("admin.jsp").forward(request, response);
 				return;
 			}
-				
-
 			
-		
-			out.println(scriptcloud);
-			out.println(script);
-			out.println(scr);
-			out.println(scr3);
-			out.println("swal ( 'Wrong email or password' ,  'Try again !' ,  'error' );");
-			out.println("});");
-			out.println(scr2);
+			String msg="'Wrong email or password' ,  'Try again !' ,  'error'";
+			printPopUp(msg, out);
 			RequestDispatcher rd = request.getRequestDispatcher(index);
 			rd.include(request, response);
 			}
@@ -108,24 +100,14 @@ public class LogRegUtil {
 			
 			try {
 				if(cr.register(ub)) {
-					out.println(scriptcloud);
-					out.println(script);
-					out.println(scr);
-					out.println(scr3);
-					out.println("swal ( 'Successfull Registration !' ,  'Login in ' ,  'success' );");
-					out.println("});");
-					out.println(scr2);
+					String msg="'Successfull Registration !' ,  'Login in ' ,  'success'";
+					printPopUp(msg, out);
 					RequestDispatcher rd = request.getRequestDispatcher(index);
 					rd.include(request, response);
 				}
 				else {
-					out.println(scriptcloud);
-					out.println(script);
-					out.println(scr);
-					out.println(scr3);
-					out.println("swal ( 'User already Registered' ,  'Try Again !' ,  'error' );");
-					out.println("});");
-					out.println(scr2);
+					String msg="'User already Registered' ,  'Try Again !' ,  'error'";
+					printPopUp(msg, out);
 					RequestDispatcher rd = request.getRequestDispatcher(index);
 					rd.include(request, response);
 				}
@@ -135,13 +117,8 @@ public class LogRegUtil {
 			}
 	}
 	else {
-		out.println(scriptcloud);
-		out.println(script);
-		out.println(scr);
-		out.println(scr3);
-		out.println("swal ( 'Password and confirm password are different' ,  'Try again !' ,  'error' );");
-		out.println("});");
-		out.println(scr2);
+		String msg="'Password and confirm password are different' ,  'Try again !' ,  'error'";
+		printPopUp(msg, out);
 		RequestDispatcher rd = request.getRequestDispatcher(index);
 		rd.include(request, response);
 	}
@@ -153,16 +130,23 @@ public class LogRegUtil {
 		if (name.contentEquals("") || surname.contentEquals("") || mail.contentEquals("") || pass.contentEquals("") ||
 				confpass.contentEquals("") || address.contentEquals("")) {
 			PrintWriter out = response.getWriter();
-			out.println(scriptcloud);
-			out.println(script);
-			out.println(scr);
-			out.println(scr3);
-			out.println("swal ( 'Invalid fields' ,  'Try again !' ,  'error' );");
-			out.println("});");
-			out.println(scr2);
+			String msg="'Invalid fields' ,  'Try again !' ,  'error'";
+			printPopUp(msg, out);
 			return false;
 		}
 		return true;
+		
+	}
+	
+	private void printPopUp(String msg, PrintWriter out) {
+		
+		out.println(scriptcloud);
+		out.println(script);
+		out.println(scr);
+		out.println(scr3);
+		out.println("swal ( "+ msg +" );");
+		out.println("});");
+		out.println(scr2);
 		
 	}
 
