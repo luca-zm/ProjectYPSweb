@@ -1,26 +1,17 @@
-package webeco.src.servlet;
+package logic.servlet;
 
 import java.io.IOException;
-
-
-
-
-
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-import laptopeco.bean.ProductBean;
-import laptopeco.bean.UserBean;
-
-import webeco.src.controller.ControllerManageProduct;
-import webeco.src.controller.ControllerManageUser;
-import laptopeco.logic.enums.Category;
+import logic.bean.ProductBean;
+import logic.bean.UserBean;
+import logic.controller.ControllerManageProduct;
+import logic.controller.ControllerManageUser;
+import logic.enums.Category;
 
 
 /**

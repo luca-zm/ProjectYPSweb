@@ -1,16 +1,13 @@
-package webeco.src.servlet;
+package logic.servlet;
 
 
 import java.io.IOException;
-
-
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,20 +15,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import laptopeco.bean.AddressBean;
-import laptopeco.bean.UserBean;
-import webeco.src.controller.ControllerLogin;
-import webeco.src.controller.ControllerManageCollPoint;
-import webeco.src.controller.ControllerRegistration;
-import laptopeco.logic.enums.Roles;
-import laptopeco.logic.model.AbstractUser;
-import laptopeco.logic.model.CollectionPoint;
-import laptopeco.logic.model.Product;
-import laptopeco.logic.persistence.AddressDAO;
-import laptopeco.logic.persistence.CollectionPointDAO;
-import laptopeco.logic.persistence.ProductDAO;
-import laptopeco.logic.persistence.UserDAO;
+import logic.bean.AddressBean;
+import logic.bean.UserBean;
+import logic.controller.ControllerLogin;
+import logic.controller.ControllerManageCollPoint;
+import logic.controller.ControllerRegistration;
+import logic.enums.Roles;
+import logic.model.AbstractUser;
+import logic.model.CollectionPoint;
+import logic.model.Product;
+import logic.persistence.AddressDAO;
+import logic.persistence.CollectionPointDAO;
+import logic.persistence.ProductDAO;
+import logic.persistence.UserDAO;
 
 /**
  * Servlet implementation class LoginController

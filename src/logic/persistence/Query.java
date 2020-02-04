@@ -1,4 +1,4 @@
-package laptopeco.logic.persistence;
+package logic.persistence;
 
 public class Query {
 	

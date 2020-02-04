@@ -1,4 +1,4 @@
-package laptopeco.logic.persistence;
+package logic.persistence;
 
 import java.sql.PreparedStatement;
 
@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import laptopeco.logic.enums.Category;
-import laptopeco.logic.model.Product;
+import logic.enums.Category;
+import logic.model.Product;
 
 public class ProductDAO {
 	

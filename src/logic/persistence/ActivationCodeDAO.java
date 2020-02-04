@@ -1,11 +1,11 @@
-package laptopeco.logic.persistence;
+package logic.persistence;
 
 import java.sql.PreparedStatement;
 
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import laptopeco.logic.model.ActivationCode;
+import logic.model.ActivationCode;
 
 
 public class ActivationCodeDAO { 

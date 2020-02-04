@@ -1,4 +1,4 @@
-package laptopeco.logic.persistence;
+package logic.persistence;
 
 import java.sql.PreparedStatement;
 
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import laptopeco.logic.model.CollectionPoint;
+import logic.model.CollectionPoint;
 
 public class CollectionPointDAO {
 	

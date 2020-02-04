@@ -1,16 +1,15 @@
-package webeco.src.servlet;
+package logic.servlet;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import laptopeco.bean.CollectionPointBean;
-import webeco.src.controller.ControllerManageCollPoint;
-import laptopeco.logic.model.CollectionPoint;
+import logic.bean.CollectionPointBean;
+import logic.controller.ControllerManageCollPoint;
+import logic.model.CollectionPoint;
 
 /**
  * Servlet implementation class ModeratorServlet
