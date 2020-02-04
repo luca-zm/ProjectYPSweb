@@ -2,12 +2,12 @@ package logic.servlet;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,19 +15,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import logic.LogRegUtil;
 import logic.bean.AddressBean;
 import logic.bean.UserBean;
-import logic.controller.ControllerLogin;
 import logic.controller.ControllerManageCollPoint;
-import logic.controller.ControllerRegistration;
-import logic.enums.Roles;
-import logic.model.AbstractUser;
-import logic.model.CollectionPoint;
+
 import logic.model.Product;
-import logic.persistence.AddressDAO;
-import logic.persistence.CollectionPointDAO;
+
 import logic.persistence.ProductDAO;
-import logic.persistence.UserDAO;
 
 /**
  * Servlet implementation class LoginController
@@ -44,15 +40,10 @@ public class LoginControllerServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(); 
 		String action = request.getParameter("action");
-		PrintWriter out = response.getWriter();
-		String scr = "<script>";
-		String scr2 = "</script>";
-		String scr3 = "$(document).ready(function(){";
-		String script = "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>";
-		String scriptcloud = "<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>";
 		String index = "index.jsp";
 		List<Product> catalogo = new ArrayList<>();
 		List<Product> catalogomini = new ArrayList<>();
+		LogRegUtil lg = new LogRegUtil();
 		
 		try {
 			catalogo = ProductDAO.select();			
@@ -80,67 +71,16 @@ public class LoginControllerServlet extends HttpServlet {
 		
 		
 		if("login".equals(action)) {
-			ControllerLogin cl = new ControllerLogin();
 			String mail=request.getParameter("username");
 			String pw=request.getParameter("password");
 			UserBean ub = new UserBean(0, mail, null, null, pw, null);
 			
-			try {
-				cl.login(ub, session);
-				AbstractUser user = (AbstractUser) session.getAttribute("user");
-				if(user != null && user.getType().equals(Roles.USER)) {
-					List<CollectionPoint> collpoint = CollectionPointDAO.select();
-
-					session.setAttribute("mapImage", mapUrl);
-					session.setAttribute("collpoint", collpoint);
-					session.setAttribute("catalogomini", catalogomini);
-					session.setAttribute("catalogo", catalogo);
-						
-					session.setAttribute("indirizzo", AddressDAO.findAddressById(user.getId()));
-						
-					request.getRequestDispatcher("homepage.jsp").forward(request, response);
-					return;
-						
-				}
-					
-				if(user != null && user.getType().equals(Roles.COLLECTIONPOINTMAN)) {
-					List<CollectionPoint> collpoint = CollectionPointDAO.select();
-					session.setAttribute("collpoint", collpoint);
-					request.getRequestDispatcher("moderator.jsp").forward(request, response);
-					return;
-				}
-					
-					
-				if(user != null && user.getType().equals(Roles.ADMIN)) {
-					List<AbstractUser> users = UserDAO.findUsers();
-					session.setAttribute("catalogo", catalogo);
-					session.setAttribute("users", users);
-					request.getRequestDispatcher("admin.jsp").forward(request, response);
-					return;
-				}
-					
-
-				
+			lg.loginUtil(session, ub, mapUrl, catalogomini, catalogomini, request, response);
 			
-				out.println(scriptcloud);
-				out.println(script);
-				out.println(scr);
-				out.println(scr3);
-				out.println("swal ( 'Wrong email or password' ,  'Try again !' ,  'error' );");
-				out.println("});");
-				out.println(scr2);
-				RequestDispatcher rd = request.getRequestDispatcher(index);
-				rd.include(request, response);
-				}
-
-			    catch (SQLException | ServletException | IOException e) {
-				e.printStackTrace();
-			}
 		}
 		
 
 		if("register".equals(action)) {
-			ControllerRegistration cr = new ControllerRegistration();
 			String name = request.getParameter("name");
 			String surname = request.getParameter("surname");
 			String pass = request.getParameter("pass");
@@ -153,52 +93,16 @@ public class LoginControllerServlet extends HttpServlet {
 			String state = request.getParameter("state");
 			String zone = request.getParameter("zone");
 			
+			
+			
 			AddressBean addr = new AddressBean(address, city, zipcode, telephone, state, zone);
 			UserBean ub = new UserBean(0, email, name, surname, pass, addr);
 			
-			
-			if(pass.contentEquals(confpass)){
-				
-					try {
-						if(cr.register(ub)) {
-							out.println(scriptcloud);
-							out.println(script);
-							out.println(scr);
-							out.println(scr3);
-							out.println("swal ( 'Successfull Registration !' ,  'Login in ' ,  'success' );");
-							out.println("});");
-							out.println(scr2);
-							RequestDispatcher rd = request.getRequestDispatcher(index);
-							rd.include(request, response);
-						}
-						else {
-							out.println(scriptcloud);
-							out.println(script);
-							out.println(scr);
-							out.println(scr3);
-							out.println("swal ( 'User already Registered' ,  'Try Again !' ,  'error' );");
-							out.println("});");
-							out.println(scr2);
-							RequestDispatcher rd = request.getRequestDispatcher(index);
-							rd.include(request, response);
-						}
-					} catch (SQLException | ServletException | IOException e) {
-						// empty
-						e.printStackTrace();
-					}
+			if(lg.checkUserReg(name, surname, email, pass, confpass, address, response)) {
+				lg.registerUtil(ub, pass, confpass, request, response);
 			}
-			else {
-				out.println(scriptcloud);
-				out.println(script);
-				out.println(scr);
-				out.println(scr3);
-				out.println("swal ( 'Password and confirm password are different' ,  'Try again !' ,  'error' );");
-				out.println("});");
-				out.println(scr2);
-				RequestDispatcher rd = request.getRequestDispatcher(index);
-				rd.include(request, response);
-			}
-
+			RequestDispatcher rd = request.getRequestDispatcher(index);
+			rd.include(request, response);
 		}
 		
 		
