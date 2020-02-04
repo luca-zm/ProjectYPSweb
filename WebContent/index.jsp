@@ -50,7 +50,7 @@
 						<form action="LoginControllerServlet" method="post">
 						<div class="promo-code-form">
 							<input id="usr" type="text" placeholder="Email" name="username"><br><br>
-							<input id="psw" type="text" placeholder="Password" name="password"><br><br>
+							<input id="psw" type="password" placeholder="Password" name="password"><br><br>
 						</div>
 						<button class="site-btn" style="background-color:#4fe090" name="action" value="login">Login</button>
 						</form>
