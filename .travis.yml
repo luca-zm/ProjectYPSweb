@@ -1,5 +1,14 @@
 language: java
-jdk:
-	-openjdk8
-	
-script: antbuild
+
+jdk: 
+    -openjdk8
+
+addons:
+    sonarcloud:
+     organization: "luca-zm"
+     token:
+        secure: "379b83192729ef4a07c8fec100fa909dd013d928"
+
+script:
+- ant build
+- sonar-scanner
