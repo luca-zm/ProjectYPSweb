@@ -2,7 +2,7 @@ package logic.bean;
 
 public class BeanValidate {
 	
-	private BeanValidate() {		
+	public BeanValidate() {		
 	}
 	
 	public static boolean isInteger(String str) {

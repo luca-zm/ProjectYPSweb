@@ -1,6 +1,7 @@
 package logic.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.bean.ActivationCodeBean;
+import logic.bean.BeanValidate;
 import logic.controller.ControllerShopCartCheckOut;
 
 /**
@@ -39,19 +41,41 @@ public class UserProfileServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(); 
 		ControllerShopCartCheckOut ac = new ControllerShopCartCheckOut();
+		BeanValidate bv = new BeanValidate();
+		PrintWriter out = response.getWriter();
+
 		
 		String action = request.getParameter("activate");
-
+		
 		if("activate".equals(action)) {
-			
 			String code=request.getParameter("code");
-			ActivationCodeBean acb = new ActivationCodeBean(Integer.parseInt(code), 0);
 			try {
-				ac.enabledActivationCode(acb, session);
+				if (bv.isInteger(code)) {
+					ActivationCodeBean acb = new ActivationCodeBean(Integer.parseInt(code), 0);
+					ac.enabledActivationCode(acb, session);
+					
+					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+					out.println("<script>");
+					out.println("$(document).ready(function(){");
+					out.println("swal ( 'Collection Point successfull deleted !' ,  '' ,  'success' );");
+					out.println("});");
+					out.println("</script>");
+					
+				}
+				else { out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+						out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+						out.println("<script>");
+						out.println("$(document).ready(function(){");
+						out.println("swal ( 'Errore, non è un numero' ,  'Try Again' ,  'error' );");
+						out.println("});");
+						out.println("</script>");
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
+			
 			request.getRequestDispatcher("userprofile.jsp").forward(request, response);
 		}
 	}
