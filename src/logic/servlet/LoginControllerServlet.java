@@ -75,7 +75,7 @@ public class LoginControllerServlet extends HttpServlet {
 			String pw=request.getParameter("password");
 			UserBean ub = new UserBean(0, mail, null, null, pw, null);
 			
-			lg.loginUtil(session, ub, mapUrl, catalogomini, catalogomini, request, response);
+			lg.loginUtil(session, ub, mapUrl, catalogo, catalogomini, request, response);
 			
 		}
 		

@@ -35,7 +35,7 @@ public class LogRegUtil {
 	String index = "index.jsp";
     
 	public void loginUtil(HttpSession session, UserBean ub, URL mapUrl,
-					List<Product> catalogomini, List<Product> catalogo,
+					List<Product> catalogo, List<Product> catalogomini,
 					HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 
