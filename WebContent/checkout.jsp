@@ -72,7 +72,7 @@
 							<div class="col-md-4">
 								<div class="cf-radio-btns address-rb">
 									<div class="cfr-item">
-										<input type="radio" name="pm" id="one">
+										<input type="radio" name="pm" id="one" checked>
 										<label for="one">Use my regular address</label>
 									</div>
 									<div class="cfr-item">
