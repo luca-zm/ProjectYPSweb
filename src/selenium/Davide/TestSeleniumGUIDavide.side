@@ -1,0 +1,122 @@
+{
+  "id": "7ce755fa-d705-496c-b001-3beb744d62d9",
+  "version": "2.0",
+  "name": "prova",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "e35eaa32-500e-4c23-9139-22d9ce72ab8c",
+    "name": "Test_Selenium_GUI_Davide",
+    "commands": [{
+      "id": "97807043-1673-4a1e-a9fb-d73407f80f34",
+      "comment": "",
+      "command": "open",
+      "target": "/webzeco/index.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ed016b1f-5a57-4e0a-b5ef-3a4d790669fc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x834",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fe5c86d1-bca3-41a2-932c-3a6c41445529",
+      "comment": "",
+      "command": "click",
+      "target": "name=action",
+      "targets": [
+        ["name=action", "name"],
+        ["css=.site-btn:nth-child(2)", "css:finder"],
+        ["xpath=//button[@name='action']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3453d25e-4cee-4499-a0ba-8b8281862677",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Shopping Cart",
+      "targets": [
+        ["linkText=Shopping Cart", "linkText"],
+        ["css=.main-menu > li:nth-child(7) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Shopping Cart')])[2]", "xpath:link"],
+        ["xpath=(//a[contains(@href, './cart.jsp')])[2]", "xpath:href"],
+        ["xpath=//form/ul/li[7]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3ccff75-f7cd-4d1a-befc-3d443665c779",
+      "comment": "",
+      "command": "click",
+      "target": "css=h3",
+      "targets": [
+        ["css=h3", "css:finder"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Your Cart')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6757a75d-f40f-4bd7-be14-7cb0da440462",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=#continue > .container",
+      "targets": [
+        ["css=#continue > .container", "css:finder"],
+        ["xpath=//section[@id='continue']/div", "xpath:idRelative"],
+        ["xpath=//section[2]/div", "xpath:position"]
+      ],
+      "value": "1028,81"
+    }, {
+      "id": "958cd2c5-1d25-47da-a0d6-21d1288a09f2",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=#continue > .container",
+      "targets": [
+        ["css=#continue > .container", "css:finder"],
+        ["xpath=//section[@id='continue']/div", "xpath:idRelative"],
+        ["xpath=//section[2]/div", "xpath:position"]
+      ],
+      "value": "1028,81"
+    }, {
+      "id": "2584b465-9c1f-4ba4-9eb6-c38768ec4888",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=#continue > .container",
+      "targets": [
+        ["css=#continue > .container", "css:finder"],
+        ["xpath=//section[@id='continue']/div", "xpath:idRelative"],
+        ["xpath=//section[2]/div", "xpath:position"]
+      ],
+      "value": "1028,81"
+    }, {
+      "id": "a1daea84-bf5e-4b70-8276-0a495e269941",
+      "comment": "",
+      "command": "click",
+      "target": "css=#continue > .container",
+      "targets": [
+        ["css=#continue > .container", "css:finder"],
+        ["xpath=//section[@id='continue']/div", "xpath:idRelative"],
+        ["xpath=//section[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "890f5cfd-4ff1-4e47-b07d-19b95e8ec1e7",
+      "comment": "",
+      "command": "",
+      "target": "",
+      "targets": [],
+      "value": "Your Cart"
+    }]
+  }],
+  "suites": [{
+    "id": "2f07525c-71ae-42fb-a760-2fdaf59ff293",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e35eaa32-500e-4c23-9139-22d9ce72ab8c"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
